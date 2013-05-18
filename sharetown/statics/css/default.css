@@ -1,0 +1,36 @@
+.alert-box.deleted {
+    background: #ff6c3c;
+}
+
+.drag-file {
+    font-weight: bold;
+    text-align: center;
+    padding: 1em 0;
+    margin: 1em 0;
+    color: #555;
+    border: 2px dashed #555;
+    border-radius: 7px;
+    cursor: default;
+}
+
+.drag-file-hover {
+    font-weight: bold;
+    text-align: center;
+    padding: 1em 0;
+    margin: 1em 0;
+    color: #71C671;
+    border-color: #71C671;
+    border-style: solid;
+    box-shadow: inset 0 3px 4px #888;
+    border: 2px dashed #555;
+    border-radius: 7px;
+    cursor: default;
+}
+
+.icon {
+    font-size: 16px;
+}
+
+#upload_progress_bar {
+    width: 0%;
+}

@@ -1,0 +1,49 @@
+{% extends 'layouts/frontend.html' %}
+
+{% block container %}
+<div id="index">
+	<h5>File Upload:</h5>
+	<div class="drag-file">drop the file here</div>
+	<div id="upload_progress" class="progress">
+		<span id="upload_progress_bar" class="meter"></span>
+	</div>
+	<h5>List of files:</h5>
+	<table width="100%">
+		<thead>
+			<tr>
+				<th>&nbsp;</th>
+				<th>Name</th>
+				<th>Size</th>
+				<th>Time</th>
+				<th>More</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for file in files %}
+			<tr>
+				<td>
+					<span data-tooltip class="has-tip tip-left noradius" title="{{ file['extension'] | upper }}">
+						<img src='/statics/img/icons/{{ file['icon'] }}' width="24" height="24">
+					</span>
+				</td>
+				<td>{{ file['name'] }}</td>
+				<td>{{ file['size'] }}</td>
+				<td>{{ file['time'] | format_datetime }}</td>
+				<td>
+					<a href="{{ url_for('index.download', filename=file['encode']) }}">
+						<span data-tooltip class="has-tip tip-left noradius" title="download">
+							<i class="icon foundicon-down-arrow"></i>
+						</span>
+					</a>
+					<a href="{{ url_for('index.delete', filename=file['encode']) }}" class="ensure">
+						<span data-tooltip class="has-tip tip-right noradius" title="delete">
+							<i class="icon foundicon-trash"></i>
+						</span>
+					</a>
+				</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>
+{% endblock %}

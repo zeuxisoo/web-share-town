@@ -1,0 +1,12 @@
+.DS_Store
+.*~
+*.pyc
+*.sqlite
+*.db
+.DS_Store
+venv
+tube/statics/.webassets-cache
+tube/statics/assets
+sharetown/statics/.webassets-cache
+sharetown/statics/assets/packed.js
+sharetown/statics/assets/packed.css

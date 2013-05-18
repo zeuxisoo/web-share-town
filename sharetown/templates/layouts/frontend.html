@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" charset="utf-8" />
+<meta name="Robots" content="noindex, nofollow" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>ShareTown</title>
+{% assets filters="yui_css", output="assets/packed.css",
+	"vendor/foundation/css/normalize.css",
+	"vendor/foundation/css/foundation.min.css",
+	"vendor/foundation/stylesheets/general_foundicons.css",
+	"vendor/foundation/stylesheets/general_enclosed_foundicons.css",
+	"css/default.css" %}
+	<link rel="stylesheet" href="{{ ASSET_URL }}">
+{% endassets %}
+{% assets filters="closure_js", output="assets/packed.js",
+	"vendor/foundation/js/vendor/jquery.js",
+	"vendor/foundation/js/vendor/custom.modernizr.js",
+	"vendor/foundation/js/foundation.min.js",
+	"vendor/foundation/js/foundation/foundation.tooltips.js",
+	"vendor/drag-file.js",
+	"js/default.js" %}
+	<script type="text/javascript" src="{{ ASSET_URL }}"></script>
+{% endassets %}
+</head>
+<body>
+<div class="row">
+	<div class="top-bar">
+		<ul class="title-area">
+			<li class="name">
+				<h1><a href="{{ url_for('index.index') }}">ShareTown</a></h1>
+			</li>
+			<li class="toggle-topbar menu-icon"><a href="{{ url_for('index.index') }}"><span>Home</span></a></li>
+		</ul>
+		<section class="top-bar-section">
+			<ul class="left">
+				<li class="divider"></li>
+				<li>
+					<a href="#">Index</a>
+				</li>
+				<li class="divider"></li>
+			</ul>
+		</section>
+	</div>
+
+	{% with messages = get_flashed_messages(with_categories = true) %}
+		{% if messages %}
+			{% for category, message in messages %}
+				<div data-alert class="alert-box {{ category }}">
+					<strong>{{ category | capitalize }}!</strong> {{ message }}
+				</div>
+			{% endfor %}
+		{% endif %}
+	{% endwith %}
+
+	{% block container %}
+	{% endblock %}
+
+	<div id="footer">
+		<hr>
+		<small>&copy ShareTown 2013 @ VERSION 0.1</small>
+	</div>
+</div>
+</body>
+</html>
