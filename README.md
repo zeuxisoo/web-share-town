@@ -9,7 +9,7 @@ Install the dependency
 Run the application
 
     python manager.py runserver
-    
+
 OR
 
     make server
@@ -17,3 +17,8 @@ OR
 Open in browser
 
     http://localhost:5000/
+
+Gunicorn
+
+    # http://localhost:8000/
+    gunicorn wsgi:app
