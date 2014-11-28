@@ -26,7 +26,7 @@
 						<img src='/statics/img/icons/{{ file['icon'] }}' width="24" height="24">
 					</span>
 				</td>
-				<td>{{ file['name'] }}</td>
+				<td><a href="{{ url_for('index.preview', filename=file['encode']) }}" target="_blank">{{ file['name'] }}</a></td>
 				<td>{{ file['size'] }}</td>
 				<td>{{ file['time'] | format_datetime }}</td>
 				<td>

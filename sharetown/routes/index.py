@@ -3,7 +3,7 @@ from datetime import datetime
 from urllib import quote
 from flask import Blueprint
 from flask import current_app
-from flask import render_template, request, redirect, url_for, flash, send_file
+from flask import render_template, request, redirect, url_for, flash, send_file, send_from_directory
 from werkzeug.utils import secure_filename
 from ..helpers import allowed_file, file_extension, file_size, extension2icon
 
@@ -53,6 +53,17 @@ def download(filename):
 
 	if os.path.exists(file_path):
 		return send_file(file_path, as_attachment=True, attachment_filename=filename.replace("_", " "))
+	else:
+		flash('Can not found the file {0}'.format(filename), 'error')
+		return redirect(url_for('index.index'))
+
+@blueprint.route('/preview/<filename>')
+def preview(filename):
+	upload_root = os.path.join(os.getcwd(), current_app.config.get('UPLOAD_FOLDER'))
+	file_path   = os.path.join(upload_root, filename)
+
+	if os.path.exists(file_path):
+		return send_from_directory(upload_root, filename)
 	else:
 		flash('Can not found the file {0}'.format(filename), 'error')
 		return redirect(url_for('index.index'))
